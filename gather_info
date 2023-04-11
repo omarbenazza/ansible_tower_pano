@@ -1,0 +1,17 @@
+---
+- name: Get Palo Alto Firewall Information
+  hosts: firewalls
+  gather_facts: no
+
+  tasks:
+    - name: Retrieve device facts
+      panos_facts:
+        provider:
+          ip_address: "{{ inventory_hostname }}"
+          username: "{{ username }}"
+          password: "{{ password }}"
+      register: device_facts
+
+    - name: Print device serial number
+      debug:
+        var: device_facts['ansible_facts']['serial_number']
