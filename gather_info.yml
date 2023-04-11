@@ -1,14 +1,14 @@
 ---
 
-  collections:
-    - paloaltonetworks.panos
+ collections:
+   - paloaltonetworks.panos
 
-  tasks:
-  - name: Get the system info
-    panos_op:
-      provider: '{{ provider }}'
-      cmd: 'show system info'
-    register: res
+ tasks:
+ - name: Get the system info
+   panos_op:
+     provider: '{{ provider }}'
+     cmd: 'show system info'
+   register: res
 
-  - debug:
-      msg: '{{ res.stdout }}'
+ - debug:
+     msg: '{{ res.stdout }}'
