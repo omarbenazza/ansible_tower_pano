@@ -1,0 +1,18 @@
+# Pre Provision Playbook to get base config on a Palo Alto Firewall 
+---
+ 
+- name: Palo Alto Provision 
+  hosts: palo
+  connection: local
+ 
+  collections:
+    - paloaltonetworks.panos
+ 
+  tasks: 
+    - name: Wait for FW reboot
+      panos_check:
+        provider: '{{ palo_provider }}'
+      register: result
+      until: not result|failed
+      retries: 50
+      delay: 5
